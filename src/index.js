@@ -1,8 +1,9 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
-import {  Button, Navbar,Nav } from 'react-bootstrap'
-import Container from '@material-ui/core/Container'
-import { Alert } from '@material-ui/lab'
+//import {  Button } from 'react-bootstrap'
+//import Container from '@material-ui/core/Container'
+//import { Alert } from '@material-ui/lab'
+import styled from 'styled-components'
 //import props from 'prop-types';
 /* eslint-disable react/prop-types */
 
@@ -23,9 +24,37 @@ import {
   TableCell,
   TableContainer,
   TableRow,
-  Paper,
-  TextField
+  Paper
+  
 } from '@material-ui/core'
+
+const Button = styled.button`
+  background: Bisque;
+  font-size: 1em;
+  margin: 1em;
+  padding: 0.25em 1em;
+  border: 2px solid Chocolate;
+  border-radius: 3px;
+`
+
+const Input = styled.input`
+  margin: 0.25em;
+`
+const Page = styled.div`
+  padding: 1em;
+  background: papayawhip;
+`
+
+const Navigation = styled.div`
+  background: BurlyWood;
+  padding: 1em;
+`
+
+const Footer = styled.div`
+  background: Chocolate;
+  padding: 1em;
+  margin-top: 1em;
+`
 
 const Home = () => (
   <div> 
@@ -91,15 +120,15 @@ const Login = (props) => {
       <h2>login</h2>
       <form onSubmit={onSubmit}>
         <div>
-          <TextField label="username" />
+        username:
+          <Input />
         </div>
         <div>
-          <TextField  label="password" type='password' />
+        password:
+          <Input type='password' />
         </div>
         <div>
-          <Button variant="contained" color="primary" type="submit">
-            login
-          </Button>
+        <Button type="submit" primary=''>login</Button>
         </div>
       </form>
     </div>
@@ -150,37 +179,17 @@ const App = () => {
     : null
 
   return (
-    <Container>
-    <div className="container">
-       {(message &&
-        <Alert severity="success">
-         {message}
-        </Alert>
-        )}
-      <div>
-      <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
-  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
-  <Navbar.Collapse id="responsive-navbar-nav">
-    <Nav className="mr-auto">
-      <Nav.Link href="#" as="span">
+    <Page>
+      <Navigation>
         <Link style={padding} to="/">home</Link>
-      </Nav.Link>
-      <Nav.Link href="#" as="span">
         <Link style={padding} to="/notes">notes</Link>
-      </Nav.Link>
-      <Nav.Link href="#" as="span">
         <Link style={padding} to="/users">users</Link>
-      </Nav.Link>
-      <Nav.Link href="#" as="span">
         {user
-          ? <em style={padding}>{user} logged in</em>
+          ? <em>{user} logged in</em>
           : <Link style={padding} to="/login">login</Link>
         }
-    </Nav.Link>
-    </Nav>
-  </Navbar.Collapse>
-</Navbar>
-</div>
+      </Navigation>
+
       <Switch>
         <Route path="/notes/:id">
           <Note note={note} />
@@ -198,12 +207,11 @@ const App = () => {
           <Home />
         </Route>
       </Switch>
-      <div>
-        <br />
+      
+      <Footer>
         <em>Note app, Department of Computer Science 2021</em>
-      </div>
-    </div>
-    </Container>
+      </Footer>
+    </Page>
   )
 }
 
