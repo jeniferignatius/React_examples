@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import ReactDOM from 'react-dom'
+import Background from './backround';
 //import {  Button } from 'react-bootstrap'
 //import Container from '@material-ui/core/Container'
 //import { Alert } from '@material-ui/lab'
@@ -107,25 +108,28 @@ const Users = () => (
 )
 
 const Login = (props) => {
+
+		
+  const [username, setUsername] = useState('')
   const history = useHistory()
 
   const onSubmit = (event) => {
     event.preventDefault()
-    props.onLogin('mluukkai')
+    props.onLogin(username)
     history.push('/')
   }
-
+  
   return (
     <div>
       <h2>login</h2>
       <form onSubmit={onSubmit}>
         <div>
         username:
-          <Input />
+          <Input type='name' onChange={e => setUsername(e.target.value)} />
         </div>
         <div>
         password:
-          <Input type='password' />
+          <Input type='password' value='password'/>
         </div>
         <div>
         <Button type="submit" primary=''>login</Button>
@@ -162,6 +166,7 @@ const App = () => {
 
   const login = (user) => {
     setUser(user)
+    setMessage(message)
     setMessage(`welcome ${user}`)
     setTimeout(() => {
       setMessage(null)
@@ -217,6 +222,7 @@ const App = () => {
 
 ReactDOM.render(
   <Router>
+    <Background />
     <App />
   </Router>,
   document.getElementById('root')
