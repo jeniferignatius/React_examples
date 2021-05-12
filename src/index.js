@@ -5,6 +5,9 @@ import Background from './backround';
 //import Container from '@material-ui/core/Container'
 //import { Alert } from '@material-ui/lab'
 import styled from 'styled-components'
+import 'bootstrap/dist/css/bootstrap.min.css'; 
+import Calendar from './Calendar'
+
 //import props from 'prop-types';
 /* eslint-disable react/prop-types */
 
@@ -223,6 +226,7 @@ const App = () => {
 ReactDOM.render(
   <Router>
     <Background />
+    <Calendar/> 
     <App />
   </Router>,
   document.getElementById('root')
